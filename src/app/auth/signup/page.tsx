@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function Signup() {
     return (
-        <div className="w-full max-h-[620px] md:h-fit flex flex-col items-center justify-between gap-4 p-2 flex-1 rounded-md bg-white/10 backdrop-blur-md border border-white/40 shadow-black/80 shadow-lg spect-square text-white">
+        <div className="w-full  flex flex-col items-center justify-between gap-4 p-2 flex-1 rounded-md bg-white/10 backdrop-blur-md border border-white/40 shadow-black/80 shadow-lg spect-square text-white">
 
             <h1 className="text-2xl text-gray-100/80 font-bold my-2 text-center">Weclome to  <span className="text-white ">Jeevika.</span></h1>
 
