@@ -1,0 +1,290 @@
+[
+    {
+        "title": "Service Details",
+        "service_name": "Team Rodriguez Plastering Experts",
+        "rating": "4.2",
+        "member_since": "Mar 2025",
+        "rate": "₹812/day",
+        "availability": "2 people available",
+        "location": "Nowhatta, Srinagar",
+        "about": "We are a team of 2 experienced workers with expertise in Plastering, Painting, Tiling, Waterproofing, POP Work. We provide our own tools and are available for projects of any size in and around Srinagar.",
+        "skills": [
+            "Plastering",
+            "Painting",
+            "Tiling",
+            "Waterproofing",
+            "POP Work"
+        ],
+        "full_location": "Nowhatta, Srinagar, Jammu & Kashmir",
+        "reviews": [
+            {
+                "name": "Farooq A.",
+                "rating": "⭐⭐⭐⭐⭐",
+                "time_ago": "2 weeks ago",
+                "text": "Excellent work! The team was punctual, professional, and completed the job ahead of schedule. Highly recommended."
+            },
+            {
+                "name": "Mehreen B.",
+                "rating": "⭐⭐⭐⭐⭐",
+                "time_ago": "1 month ago",
+                "text": "Very efficient and respectful team. My kitchen renovation was done perfectly."
+            }
+        ]
+    },
+    {
+        "title": "Service Details",
+        "service_name": "Team Carter Roofing Experts",
+        "rating": "4.7 ",
+        "member_since": "Oct 2023",
+        "rate": "₹1050/day",
+        "availability": "4 people available",
+        "location": "Rajbagh, Srinagar",
+        "about": "We are a team of 4 experienced workers with expertise in Roofing, Gutter Installation, Metal Roofing, Tile Roofing, Roof Repair. We provide our own tools and are available for projects of any size in and around Srinagar.",
+        "skills": [
+            "Roofing",
+            "Gutter Installation",
+            "Metal Roofing",
+            "Tile Roofing",
+            "Roof Repair"
+        ],
+        "full_location": "Rajbagh, Srinagar, Jammu & Kashmir",
+        "reviews": [
+            {
+                "name": "Imran N.",
+                "rating": "⭐⭐⭐",
+                "time_ago": "3 weeks ago",
+                "text": "Work was okay, but there were some delays in completing the project."
+            },
+            {
+                "name": "Farooq A.",
+                "rating": "⭐⭐⭐⭐⭐",
+                "time_ago": "2 weeks ago",
+                "text": "Excellent work! The team was punctual, professional, and completed the job ahead of schedule. Highly recommended."
+            }
+        ]
+    },
+    {
+        "title": "Service Details",
+        "service_name": "Team Hughes Brick Laying Experts",
+        "rating": "4.9",
+        "member_since": "Aug 2022",
+        "rate": "₹980/day",
+        "availability": "5 people available",
+        "location": "Hazratbal, Srinagar",
+        "about": "We are a team of 5 experienced workers with expertise in Brick Laying, Stone Work, Concrete Structures, Traditional Architecture, Foundation Work. We provide our own tools and are available for projects of any size in and around Srinagar.",
+        "skills": [
+            "Brick Laying",
+            "Stone Work",
+            "Concrete Structures",
+            "Traditional Architecture",
+            "Foundation Work"
+        ],
+        "full_location": "Hazratbal, Srinagar, Jammu & Kashmir",
+        "reviews": [
+            {
+                "name": "Sameer K.",
+                "rating": "⭐⭐⭐⭐",
+                "time_ago": "1 month ago",
+                "text": "Good quality work for my house foundation. They were knowledgeable and skilled. Would hire again."
+            },
+            {
+                "name": "Mehreen B.",
+                "rating": "⭐⭐⭐⭐⭐",
+                "time_ago": "1 month ago",
+                "text": "Very efficient and respectful team. My kitchen renovation was done perfectly."
+            }
+        ]
+    },
+    {
+        "title": "Service Details",
+        "service_name": "Team Hughes Brick Laying Experts",
+        "rating": "4.9 ",
+        "member_since": "Aug 2022",
+        "rate": "₹980/day",
+        "availability": "5 people available",
+        "location": "Hazratbal, Srinagar",
+        "about": "We are a team of 5 experienced workers with expertise in Brick Laying, Stone Work, Concrete Structures, Traditional Architecture, Foundation Work. We provide our own tools and are available for projects of any size in and around Srinagar.",
+        "skills": [
+            "Brick Laying",
+            "Stone Work",
+            "Concrete Structures",
+            "Traditional Architecture",
+            "Foundation Work"
+        ],
+        "full_location": "Hazratbal, Srinagar, Jammu & Kashmir",
+        "reviews": [
+            {
+                "name": "Sameer K.",
+                "rating": "⭐⭐⭐⭐",
+                "time_ago": "1 month ago",
+                "text": "Good quality work for my house foundation. They were knowledgeable and skilled. Would hire again."
+            },
+            {
+                "name": "Mehreen B.",
+                "rating": "⭐⭐⭐⭐⭐",
+                "time_ago": "1 month ago",
+                "text": "Very efficient and respectful team. My kitchen renovation was done perfectly."
+            }
+        ]
+    },
+    {
+        "title": "Service Details",
+        "service_name": "Team Hughes Brick Laying Experts",
+        "rating": "4.9",
+        "member_since": "Aug 2022",
+        "rate": "₹980/day",
+        "availability": "5 people available",
+        "location": "Hazratbal, Srinagar",
+        "about": "We are a team of 5 experienced workers with expertise in Brick Laying, Stone Work, Concrete Structures, Traditional Architecture, Foundation Work. We provide our own tools and are available for projects of any size in and around Srinagar.",
+        "skills": [
+            "Brick Laying",
+            "Stone Work",
+            "Concrete Structures",
+            "Traditional Architecture",
+            "Foundation Work"
+        ],
+        "full_location": "Hazratbal, Srinagar, Jammu & Kashmir",
+        "reviews": [
+            {
+                "name": "Sameer K.",
+                "rating": "⭐⭐⭐⭐",
+                "time_ago": "1 month ago",
+                "text": "Good quality work for my house foundation. They were knowledgeable and skilled. Would hire again."
+            },
+            {
+                "name": "Mehreen B.",
+                "rating": "⭐⭐⭐⭐⭐",
+                "time_ago": "1 month ago",
+                "text": "Very efficient and respectful team. My kitchen renovation was done perfectly."
+            }
+        ]
+    },
+    {
+        "title": "Service Details",
+        "service_name": "Team Hughes Brick Laying Experts",
+        "rating": "4.9",
+        "member_since": "Aug 2022",
+        "rate": "₹980/day",
+        "availability": "5 people available",
+        "location": "Hazratbal, Srinagar",
+        "about": "We are a team of 5 experienced workers with expertise in Brick Laying, Stone Work, Concrete Structures, Traditional Architecture, Foundation Work. We provide our own tools and are available for projects of any size in and around Srinagar.",
+        "skills": [
+            "Brick Laying",
+            "Stone Work",
+            "Concrete Structures",
+            "Traditional Architecture",
+            "Foundation Work"
+        ],
+        "full_location": "Hazratbal, Srinagar, Jammu & Kashmir",
+        "reviews": [
+            {
+                "name": "Sameer K.",
+                "rating": "⭐⭐⭐⭐",
+                "time_ago": "1 month ago",
+                "text": "Good quality work for my house foundation. They were knowledgeable and skilled. Would hire again."
+            },
+            {
+                "name": "Mehreen B.",
+                "rating": "⭐⭐⭐⭐⭐",
+                "time_ago": "1 month ago",
+                "text": "Very efficient and respectful team. My kitchen renovation was done perfectly."
+            }
+        ]
+    },
+    {
+        "title": "Service Details",
+        "service_name": "Team Hughes Brick Laying Experts",
+        "rating": "4.9",
+        "member_since": "Aug 2022",
+        "rate": "₹980/day",
+        "availability": "5 people available",
+        "location": "Hazratbal, Srinagar",
+        "about": "We are a team of 5 experienced workers with expertise in Brick Laying, Stone Work, Concrete Structures, Traditional Architecture, Foundation Work. We provide our own tools and are available for projects of any size in and around Srinagar.",
+        "skills": [
+            "Brick Laying",
+            "Stone Work",
+            "Concrete Structures",
+            "Traditional Architecture",
+            "Foundation Work"
+        ],
+        "full_location": "Hazratbal, Srinagar, Jammu & Kashmir",
+        "reviews": [
+            {
+                "name": "Sameer K.",
+                "rating": "⭐⭐⭐⭐",
+                "time_ago": "1 month ago",
+                "text": "Good quality work for my house foundation. They were knowledgeable and skilled. Would hire again."
+            },
+            {
+                "name": "Mehreen B.",
+                "rating": "⭐⭐⭐⭐⭐",
+                "time_ago": "1 month ago",
+                "text": "Very efficient and respectful team. My kitchen renovation was done perfectly."
+            }
+        ]
+    },
+    {
+        "title": "Service Details",
+        "service_name": "Team Hughes Brick Laying Experts",
+        "rating": "4.9",
+        "member_since": "Aug 2022",
+        "rate": "₹980/day",
+        "availability": "5 people available",
+        "location": "Hazratbal, Srinagar",
+        "about": "We are a team of 5 experienced workers with expertise in Brick Laying, Stone Work, Concrete Structures, Traditional Architecture, Foundation Work. We provide our own tools and are available for projects of any size in and around Srinagar.",
+        "skills": [
+            "Brick Laying",
+            "Stone Work",
+            "Concrete Structures",
+            "Traditional Architecture",
+            "Foundation Work"
+        ],
+        "full_location": "Hazratbal, Srinagar, Jammu & Kashmir",
+        "reviews": [
+            {
+                "name": "Sameer K.",
+                "rating": "⭐⭐⭐⭐",
+                "time_ago": "1 month ago",
+                "text": "Good quality work for my house foundation. They were knowledgeable and skilled. Would hire again."
+            },
+            {
+                "name": "Mehreen B.",
+                "rating": "⭐⭐⭐⭐⭐",
+                "time_ago": "1 month ago",
+                "text": "Very efficient and respectful team. My kitchen renovation was done perfectly."
+            }
+        ]
+    },
+    {
+        "title": "Service Details",
+        "service_name": "Team Hughes Brick Laying Experts",
+        "rating": "4.9",
+        "member_since": "Aug 2022",
+        "rate": "₹980/day",
+        "availability": "5 people available",
+        "location": "Hazratbal, Srinagar",
+        "about": "We are a team of 5 experienced workers with expertise in Brick Laying, Stone Work, Concrete Structures, Traditional Architecture, Foundation Work. We provide our own tools and are available for projects of any size in and around Srinagar.",
+        "skills": [
+            "Brick Laying",
+            "Stone Work",
+            "Concrete Structures",
+            "Traditional Architecture",
+            "Foundation Work"
+        ],
+        "full_location": "Hazratbal, Srinagar, Jammu & Kashmir",
+        "reviews": [
+            {
+                "name": "Sameer K.",
+                "rating": "⭐⭐⭐⭐",
+                "time_ago": "1 month ago",
+                "text": "Good quality work for my house foundation. They were knowledgeable and skilled. Would hire again."
+            },
+            {
+                "name": "Mehreen B.",
+                "rating": "⭐⭐⭐⭐⭐",
+                "time_ago": "1 month ago",
+                "text": "Very efficient and respectful team. My kitchen renovation was done perfectly."
+            }
+        ]
+    }
+]
