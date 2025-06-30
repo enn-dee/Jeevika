@@ -3,7 +3,7 @@
 import service from "@/data/services.json";
 import type { Service } from "@/types/service";
 import { useRouter } from "next/navigation";
-import { LocationEdit, Star } from "lucide-react";
+import { LocationEdit, Star, UsersRound } from "lucide-react";
 
 interface JobListProps {
     IndivService: Service;
@@ -30,7 +30,7 @@ export default function ServiceList({ IndivService }: JobListProps) {
                     <span>distance kms</span>
                 </div>
                 <div className="flex flex-row justify-around items-center ">
-                    <p>{IndivService.availability}</p>
+                    <p><UsersRound className="inline"/> {IndivService.availability}</p>
 
                     <span>
                         {IndivService.rating} <Star className="inline-block h-4" /> ({IndivService.reviews.length} reviews)

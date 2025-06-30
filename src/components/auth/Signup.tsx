@@ -67,7 +67,7 @@ const FormContainer = () => {
     }
     const detectLocation = () => {
         if (!navigator.geolocation) {
-            alert("Geolocation not supported");
+            toast.error("Geolocation not supported");
             return;
         }
 
@@ -77,7 +77,7 @@ const FormContainer = () => {
                 setLocation({ lat: latitude, lng: longitude });
             },
             (error) => {
-                alert("Failed to get location: " + error.message);
+                toast.error("Failed to get location: " + error.message);
             }
         );
     };
