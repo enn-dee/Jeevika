@@ -1,119 +1,64 @@
+'use client';
 
-'use client'
-import Link from "next/link";
-import { Form } from "radix-ui"
-import { useState } from "react";
-import toast from "react-hot-toast";
+import { useState } from 'react';
+import toast from 'react-hot-toast';
 
-export default function Login() {
-    return (
-        <div className="w-full max-h-[420px] md:h-fit  flex flex-col items-center justify-between gap-4 p-2 flex-1 rounded-md bg-white/10 backdrop-blur-md border border-white/40 shadow-black/80 shadow-lg spect-square text-white">
-            <h1 className="text-2xl text-gray-100/80 font-bold my-2 text-center">Weclome back, Login</h1>
-            <FormContainer />
-            <hr className="w-full text-black/50 px-2" />
-            <div className="flex flex-row gap-2">
-                <span>Don &apos t have an account?</span>
-                <Link href="/auth/signup" className="text-emerald-400/90 font-semibold hover:text-white/90">Signup</Link>
+export function FormContainer() {
+  const [number, setNumber] = useState('');
+  const [password, setPassword] = useState('');
 
-            </div>
-        </div>
-    )
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      if (number.trim().length < 9) throw new Error('Invalid phone number');
+      if (password.trim().length < 5) throw new Error('Password must be at least 5 characters');
+
+      toast.success('Login successful');
+      setNumber('');
+      setPassword('');
+    } catch (error) {
+      toast.error((error as Error).message || 'Something went wrong');
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4 mt-4">
+     
+      <div>
+        <label className="text-sm font-semibold">Phone Number</label>
+        <input
+          type="tel"
+          required
+          pattern="[0-9]*"
+          inputMode="numeric"
+          autoFocus
+          placeholder="e.g. 9876543210"
+          value={number}
+          onChange={(e) => setNumber(e.target.value)}
+          className="w-full mt-1 p-2 rounded bg-white/20 text-white placeholder:text-white/50 border border-white/30 focus:outline-none focus:ring-2 focus:ring-emerald-300"
+        />
+      </div>
+
+      
+      <div>
+        <label className="text-sm font-semibold">Password</label>
+        <input
+          type="password"
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Your password"
+          className="w-full mt-1 p-2 rounded bg-white/20 text-white placeholder:text-white/50 border border-white/30 focus:outline-none focus:ring-2 focus:ring-emerald-300"
+        />
+      </div>
+
+      
+      <button
+        type="submit"
+        className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-2 rounded font-semibold text-sm mt-2"
+      >
+        Login
+      </button>
+    </form>
+  );
 }
-
-
-const FormContainer = () => {
-
-    const [number, setNumber] = useState<string>("");
-    const [password, setPassword] = useState<string>("")
-    // const [address, setAddress] = useState<string>("");
-
-
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        try {
-
-            if (number.trim().length < 9) {
-                throw new Error("Not a valid phone number");
-            }
-
-            toast.success("Registration successful");
-
-
-            setNumber("");
-            setPassword("")
-
-        } catch (error) {
-            const err = error as Error;
-            toast.error(err.message || "Something went wrong");
-        }
-    };
-
-
-
-    return (
-
-
-        <Form.Root className="w-[260px]" onSubmit={handleSubmit} >
-
-
-            <Form.Field className="mb-2.5 grid" name="number">
-                <div className="flex items-baseline justify-between">
-                    <Form.Label className="text-[15px]  font-semibold leading-[35px] text-white">
-                        Mobile Number
-                    </Form.Label>
-                    <Form.Message
-                        className="text-[13px] text-white opacity-80"
-                        match="patternMismatch"
-                    >
-                        Please enter a number
-                    </Form.Message>
-                </div>
-                <Form.Control asChild>
-                    <input
-                        className="box-border inline-flex w-full resize-none appearance-none items-center justify-center rounded bg-blackA2 p-2.5 text-[15px] leading-none text-white shadow-[0_0_0_1px] shadow-blackA6 outline-none selection:bg-blackA6 selection:text-white hover:shadow-[0_0_0_1px_black] focus:shadow-[0_0_0_2px_black]"
-                        type="tel"
-                        required
-                        pattern="[0-9]*"
-                        inputMode="numeric"
-                        value={number}
-                        onChange={(e) => setNumber(e.target.value)}
-
-                    />
-                </Form.Control>
-            </Form.Field>
-
-
-            <Form.Field className="mb-2.5 grid" name="password">
-                <div className="flex items-baseline justify-between">
-                    <Form.Label className="text-[15px]  font-semibold leading-[35px] text-white">
-                        Set Password
-                    </Form.Label>
-                    <Form.Message
-                        className="text-[13px] text-white opacity-80"
-                        match="tooShort"
-                    >
-                        Set password
-                    </Form.Message>
-                </div>
-                <Form.Control asChild>
-                    <input
-                        className="box-border inline-flex w-full resize-none appearance-none items-center justify-center rounded bg-blackA2 p-2.5 text-[15px] leading-none text-white shadow-[0_0_0_1px] shadow-blackA6 outline-none selection:bg-blackA6 selection:text-white hover:shadow-[0_0_0_1px_black] focus:shadow-[0_0_0_2px_black]"
-                        type="password"
-                        required
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-
-                    />
-                </Form.Control>
-            </Form.Field>
-
-            <Form.Submit asChild>
-                <button className="btn btn-soft mt-2.5 box-border inline-flex h-[35px] w-full items-center justify-center rounded bg-green-400/50 px-[15px] font-medium leading-none text-violet11  shadow-blackA4 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none">
-                    Login
-                </button>
-            </Form.Submit>
-        </Form.Root>
-
-    )
-};

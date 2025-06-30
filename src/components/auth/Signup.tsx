@@ -1,268 +1,160 @@
-'use client'
-import { useState } from "react"
-import { Form, RadioGroup } from "radix-ui"
-import toast from "react-hot-toast";
-import Link from "next/link";
+'use client';
 
-
-export default function Signup() {
-    return (
-        <div className="w-full  flex flex-col items-center justify-between gap-4 p-2 flex-1 rounded-md bg-white/10 backdrop-blur-md border border-white/40 shadow-black/80 shadow-lg spect-square text-white">
-
-            <h1 className="text-2xl text-gray-100/80 font-bold my-2 text-center">Weclome to  <span className="text-white ">Jeevika.</span></h1>
-
-            <FormContainer />
-            <hr className="w-full text-black/50 px-2" />
-            <div className="flex flex-row gap-2">
-                <span>Already have an account? </span>
-                <Link href="/auth/login" className="text-emerald-400/90 font-semibold hover:text-white/90">Login</Link>
-            </div>
-        </div>
-
-
-    )
-}
+import { useState } from 'react';
+import toast from 'react-hot-toast';
+import { LocateFixed, Trash2 } from 'lucide-react';
 
 
 
-const FormContainer = () => {
-    type UserTypes = "buyer" | "seller";
+export const FormContainer = () => {
+  type UserTypes = 'buyer' | 'seller';
 
-    const [name, setName] = useState<string>("")
-    const [number, setNumber] = useState<string>("");
-    const [userType, setUserType] = useState<UserTypes>("buyer")
-    const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null);
-    const [password, setPassword] = useState<string>("")
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+  const [userType, setUserType] = useState<UserTypes>('buyer');
+  const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null);
+  const [password, setPassword] = useState('');
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      if (name.trim().length < 3) throw new Error('Name must be at least 3 characters');
+      if (number.trim().length < 9) throw new Error('Invalid phone number');
+      if (password.length < 5) throw new Error('Password should be at least 5 characters');
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        try {
-            if (name.trim().length < 3) {
-                throw new Error("Name must be at least 3 characters");
-            }
-
-            if (number.trim().length < 9) {
-                throw new Error("Not a valid phone number");
-            }
-            if (password.length < 5) {
-                throw new Error("Password should be > 5")
-            }
-            toast.success("Registration successful");
-
-            setName("");
-            setNumber("");
-            deleteLocation();
-            setUserType("buyer");
-            setPassword("")
-
-        } catch (error) {
-            const err = error as Error;
-            toast.error(err.message || "Something went wrong");
-        }
-    };
-
-    const deleteLocation = () => {
-        setLocation(null)
+      toast.success('Registration successful');
+      setName('');
+      setNumber('');
+      setLocation(null);
+      setUserType('buyer');
+      setPassword('');
+    } catch (error) {
+      toast.error((error as Error).message || 'Something went wrong');
     }
-    const detectLocation = () => {
-        if (!navigator.geolocation) {
-            toast.error("Geolocation not supported");
-            return;
-        }
+  };
 
-        navigator.geolocation.getCurrentPosition(
-            async (position) => {
-                const { latitude, longitude } = position.coords;
-                setLocation({ lat: latitude, lng: longitude });
-            },
-            (error) => {
-                toast.error("Failed to get location: " + error.message);
-            }
-        );
-    };
+  const detectLocation = () => {
+    if (!navigator.geolocation) return toast.error('Geolocation not supported');
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const { latitude, longitude } = pos.coords;
+        setLocation({ lat: latitude, lng: longitude });
+      },
+      (err) => {
+        toast.error('Location error: ' + err.message);
+      }
+    );
+  };
 
-    return (
+  return (
+    <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4 mt-4">
+      
+      <div>
+        <label className="text-sm font-semibold">Full Name</label>
+        <input
+          type="text"
+          required
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="e.g. Jhon Doe"
+          className="w-full mt-1 p-2 rounded bg-white/20 text-white placeholder:text-white/50 border border-white/30 focus:outline-none focus:ring-2 focus:ring-emerald-300"
+        />
+      </div>
 
+      
+      <div>
+        <label className="text-sm font-semibold">Phone Number</label>
+        <input
+          type="tel"
+          required
+          pattern="[0-9]*"
+          inputMode="numeric"
+          value={number}
+          onChange={(e) => setNumber(e.target.value)}
+          placeholder="e.g. 9876543210"
+          className="w-full mt-1 p-2 rounded bg-white/20 text-white placeholder:text-white/50 border border-white/30 focus:outline-none focus:ring-2 focus:ring-emerald-300"
+        />
+      </div>
 
-        <Form.Root className="w-[260px]" onSubmit={handleSubmit} >
-            <Form.Field className="mb-2.5 grid" name="fullname">
-                <div className="flex items-baseline justify-between">
-                    <Form.Label className="text-[15px]  font-semibold leading-[35px] text-white">
-                        Full Name
-                    </Form.Label>
-                    <Form.Message
-                        className="text-[13px] text-white opacity-80"
-                        match="valueMissing"
-                    >
-                        Please enter your full name
-                    </Form.Message>
+      
+      <div>
+        <label className="text-sm font-semibold">Set Password</label>
+        <input
+          type="password"
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Minimum 5 characters"
+          className="w-full mt-1 p-2 rounded bg-white/20 text-white placeholder:text-white/50 border border-white/30 focus:outline-none focus:ring-2 focus:ring-emerald-300"
+        />
+      </div>
 
-                </div>
-                <Form.Control asChild>
-                    <input
-                        className="box-border inline-flex h-[35px] w-full appearance-none items-center justify-center rounded bg-blackA2 px-2.5 text-[15px] leading-none text-white shadow-[0_0_0_1px] shadow-blackA6 outline-none selection:bg-blackA6 selection:text-white hover:shadow-[0_0_0_1px_black] focus:shadow-[0_0_0_2px_black]"
-                        type="text"
-                        required
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </Form.Control>
+     
+      <div>
+        <label className="text-sm font-semibold">Location (Auto-detect)</label>
+        <div className="flex gap-2 mt-1">
+          <input
+            type="text"
+            readOnly
+            value={location ? `${location.lat.toFixed(3)}, ${location.lng.toFixed(3)}` : ''}
+            placeholder="No location selected"
+            className="w-full p-2 rounded bg-white/20 text-white placeholder:text-white/50 border border-white/30"
+          />
+        </div>
+        <div className="flex gap-2 mt-2">
+          <button
+            type="button"
+            onClick={detectLocation}
+            className="flex items-center gap-2 px-3 py-1.5 rounded bg-emerald-500 text-white hover:bg-emerald-600 text-sm"
+          >
+            <LocateFixed size={16} /> Detect Location
+          </button>
+          <button
+            type="button"
+            onClick={() => setLocation(null)}
+            className="flex items-center gap-2 px-3 py-1.5 rounded bg-rose-500 text-white hover:bg-rose-600 text-sm"
+          >
+            <Trash2 size={16} /> Clear
+          </button>
+        </div>
+      </div>
 
-            </Form.Field>
+      
+      <div>
+        <label className="text-sm font-semibold">User Type</label>
+        <div className="flex items-center gap-4 mt-1">
+          <label className="flex items-center gap-1">
+            <input
+              type="radio"
+              name="userType"
+              value="buyer"
+              checked={userType === 'buyer'}
+              onChange={() => setUserType('buyer')}
+              className="accent-emerald-500"
+            />
+            Buyer
+          </label>
+          <label className="flex items-center gap-1">
+            <input
+              type="radio"
+              name="userType"
+              value="seller"
+              checked={userType === 'seller'}
+              onChange={() => setUserType('seller')}
+              className="accent-emerald-500"
+            />
+            Seller
+          </label>
+        </div>
+      </div>
 
-            <Form.Field className="mb-2.5 grid" name="number">
-                <div className="flex items-baseline justify-between">
-                    <Form.Label className="text-[15px]  font-semibold leading-[35px] text-white">
-                        Mobile Number
-                    </Form.Label>
-                    <Form.Message
-                        className="text-[13px] text-white opacity-80"
-                        match="valueMissing"
-                    >
-                        Please enter a number
-                    </Form.Message>
-                </div>
-                <Form.Control asChild>
-                    <input
-                        className="box-border inline-flex w-full resize-none appearance-none items-center justify-center rounded bg-blackA2 p-2.5 text-[15px] leading-none text-white shadow-[0_0_0_1px] shadow-blackA6 outline-none selection:bg-blackA6 selection:text-white hover:shadow-[0_0_0_1px_black] focus:shadow-[0_0_0_2px_black]"
-                        type="tel"
-                        required
-                        pattern="[0-9]*"
-                        inputMode="numeric"
-                        value={number}
-                        onChange={(e) => setNumber(e.target.value)}
-
-                    />
-                </Form.Control>
-            </Form.Field>
-
-            <Form.Field className="mb-2.5 grid" name="password">
-                <div className="flex items-baseline justify-between">
-                    <Form.Label className="text-[15px]  font-semibold leading-[35px] text-white">
-                        Set Password
-                    </Form.Label>
-                    <Form.Message
-                        className="text-[13px] text-white opacity-80"
-                        match="tooShort"
-                    >
-                        Set password
-                    </Form.Message>
-                </div>
-                <Form.Control asChild>
-                    <input
-                        className="box-border inline-flex w-full resize-none appearance-none items-center justify-center rounded bg-blackA2 p-2.5 text-[15px] leading-none text-white shadow-[0_0_0_1px] shadow-blackA6 outline-none selection:bg-blackA6 selection:text-white hover:shadow-[0_0_0_1px_black] focus:shadow-[0_0_0_2px_black]"
-                        type="password"
-                        required
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-
-                    />
-                </Form.Control>
-            </Form.Field>
-
-            <Form.Field className="mb-2.5 grid" name="address">
-                <div className="flex items-baseline justify-between">
-                    <Form.Label className="text-[15px] font-semibold leading-[35px] text-white ">
-                        Address
-                    </Form.Label>
-
-
-                </div>
-                <Form.Control asChild>
-                    <input
-                        className="box-border inline-flex w-full resize-none appearance-none items-center justify-center rounded bg-blackA2 p-2.5 text-[15px] leading-none text-white shadow-[0_0_0_1px] shadow-blackA6 outline-none selection:bg-blackA6 selection:text-white hover:shadow-[0_0_0_1px_black] focus:shadow-[0_0_0_2px_black]"
-                        type="text"
-                        // required
-                        value={`${location?.lat} ${location?.lng}`}
-                        readOnly
-
-                    />
-
-                </Form.Control>
-                <div className="flex flex-row items-baseline justify-between">
-
-                    <button
-                        onClick={detectLocation}
-                        className="btn btn-soft btn-info text-white px-4 py-2 rounded w-fit my-2 btn-xs"
-                    >
-                        Get Location
-                    </button>
-                    <button
-                        onClick={deleteLocation}
-                        className="btn btn-soft btn-error text-white px-4 py-2 rounded w-fit my-2 btn-xs"
-                    >
-                        Delete Location
-                    </button>
-                </div>
-            </Form.Field>
-
-
-            <Form.Field className="mb-2.5 grid" name="usertype">
-                <div className="flex items-baseline justify-between">
-                    <Form.Label className="text-[15px] leading-[35px] text-white  font-semibold">
-                        User Type
-                    </Form.Label>
-                    <Form.Message
-                        className="text-[13px] text-white opacity-80 "
-                        match="valueMissing"
-                    >
-                        Choose Type
-                    </Form.Message>
-                </div>
-
-
-                <RadioGroup.Root
-                    defaultValue="buyer"
-                    className="flex flex-row gap-2.5"
-                    aria-label="View density"
-                    value={userType}
-                    onValueChange={(val) => setUserType(val as UserTypes)}
-                >
-                    <div className="flex items-center">
-                        <RadioGroup.Item
-                            className="size-[20px] rounded-full bg-gray-200 outline-none hover:bg-violet3 focus:shadow-[0_0_0_2px] focus:bg-blue-400"
-                            value="buyer"
-                            id="r1"
-                        >
-                            <RadioGroup.Indicator className="relative flex size-full items-center justify-center after:block after:size-[11px] after:rounded-full after:bg-violet11" />
-                        </RadioGroup.Item>
-                        <label
-                            className="pl-[15px] text-[15px] leading-none text-white"
-                            htmlFor="r1"
-                        >
-                            Buyer
-                        </label>
-                    </div>
-
-                    <div className="flex items-center">
-                        <RadioGroup.Item
-                            className="size-[20px] rounded-full bg-gray-200 outline-none hover:bg-violet3 focus:shadow-[0_0_0_2px] focus:bg-blue-400"
-                            value="seller"
-                            id="r2"
-                        >
-                            <RadioGroup.Indicator className="relative flex size-full items-center justify-center after:block after:size-[11px] after:rounded-full after:bg-violet11" />
-                        </RadioGroup.Item>
-                        <label
-                            className="pl-[15px] text-[15px] leading-none text-white"
-                            htmlFor="r2"
-                        >
-                            Seller
-                        </label>
-                    </div>
-
-
-                </RadioGroup.Root>
-
-            </Form.Field>
-
-            <Form.Submit asChild>
-                <button className="btn btn-soft mt-2.5 box-border inline-flex h-[35px] w-full items-center justify-center rounded bg-green-400/50 px-[15px] font-medium leading-none text-violet11  shadow-blackA4 hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black focus:outline-none">
-                    Register
-                </button>
-            </Form.Submit>
-        </Form.Root>
-
-    )
+      
+      <button
+        type="submit"
+        className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-2 rounded font-semibold text-sm mt-2"
+      >
+        Register
+      </button>
+    </form>
+  );
 };
