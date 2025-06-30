@@ -57,7 +57,7 @@ export default function ServiceDetails() {
                     <h1 className='font-semibold'>Skills:</h1>
                     <div className='flex flex-row flex-wrap gap-3'>
                         {serviceData.skills.map((skill, index) => {
-                            return <span className='bg-slate-200 p-2 rounded-md'>{skill}</span>
+                            return <span className='bg-slate-200 p-2 rounded-md' key={index}>{skill}</span>
                         })}
                     </div>
                 </div>

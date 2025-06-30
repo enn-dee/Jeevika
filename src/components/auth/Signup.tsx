@@ -57,8 +57,9 @@ const FormContainer = () => {
             setUserType("buyer");
             setPassword("")
 
-        } catch (error: any) {
-            toast.error(error.message || "Something went wrong");
+        } catch (error) {
+            const err = error as Error;
+            toast.error(err.message || "Something went wrong");
         }
     };
 

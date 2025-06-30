@@ -12,7 +12,7 @@ export default function Login() {
             <FormContainer />
             <hr className="w-full text-black/50 px-2" />
             <div className="flex flex-row gap-2">
-                <span>Don't have an account?</span>
+                <span>Don &apos t have an account?</span>
                 <Link href="/auth/signup" className="text-emerald-400/90 font-semibold hover:text-white/90">Signup</Link>
 
             </div>
@@ -43,9 +43,9 @@ const FormContainer = () => {
             setNumber("");
             setPassword("")
 
-
-        } catch (error: any) {
-            toast.error(error.message || "Something went wrong");
+        } catch (error) {
+            const err = error as Error;
+            toast.error(err.message || "Something went wrong");
         }
     };
 
