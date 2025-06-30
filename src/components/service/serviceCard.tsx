@@ -1,48 +1,75 @@
-'use client'
+'use client';
 
-import service from "@/data/services.json";
-import type { Service } from "@/types/service";
-import { useRouter } from "next/navigation";
-import { LocationEdit, Star, UsersRound } from "lucide-react";
+import { useRouter } from 'next/navigation';
+import service from '@/data/services.json';
+import type { Service } from '@/types/service';
+import { LocationEdit, Star, UsersRound } from 'lucide-react';
 
 interface JobListProps {
     IndivService: Service;
 }
+
 export default function ServiceList({ IndivService }: JobListProps) {
     const router = useRouter();
 
-    const ShowCard = () => {
-        
-        const slug = encodeURIComponent(IndivService.service_name)
-        router.push(`/service/${slug}`)
-    }
+    const goToDetails = () => {
+        const slug = encodeURIComponent(IndivService.service_name);
+        router.push(`/service/${slug}`);
+    };
 
     return (
-        <div className="card bg-amber-50/50 w-96 shadow-sm text-black/70 backdrop-blur-md border border-black/30 hover:bg-amber-50/60 hover:shadow-lg hover:scale-95 hover:cursor-pointer transition-all ease-in-out duration-400 shrink-0" onClick={() => ShowCard()}>
-
-            <div className="card-body w-full flex flex-col gap-4 ">
-                <div className="flex flex-row gap-4 items-center">
-                    <h2 className="card-title">{IndivService.service_name}</h2>
-                    <p className="badge badge-secondary min-w-[100px] h-fit font-semibold">{IndivService.rate}</p>
-                </div>
-                <div className="flex flex-row justify-around items-center">
-                    <p className="flex items-center gap-1"><LocationEdit /> {IndivService.location}</p>
-                    <span>distance kms</span>
-                </div>
-                <div className="flex flex-row justify-around items-center ">
-                    <p><UsersRound className="inline"/> {IndivService.availability}</p>
-
-                    <span>
-                        {IndivService.rating} <Star className="inline-block h-4" /> ({IndivService.reviews.length} reviews)
+        <div
+            onClick={goToDetails}
+            className="cursor-pointer transition-all duration-300 transform hover:scale-[0.97] hover:shadow-xl rounded-lg border border-gray-300 bg-white/80 backdrop-blur-md shadow-md w-full max-w-md text-gray-800 hover:bg-white"
+        >
+            <div className="p-5 flex flex-col gap-4">
+               
+                <div className="flex items-center justify-between">
+                    <h2 className="text-lg font-semibold">{IndivService.service_name}</h2>
+                    <span className="bg-emerald-100 text-emerald-700 font-bold text-sm px-3 py-1 rounded">
+                        {IndivService.rate}
                     </span>
+                </div>
 
+               
+                <div className="flex items-center justify-between text-sm text-gray-600">
+                    <span className="flex items-center gap-1">
+                        <LocationEdit className="w-4 h-4" /> {IndivService.location}
+                    </span>
+                    <span className="text-xs italic text-gray-500">distance kms</span>
                 </div>
-                <div className=" max-h-[100px] overflow-y-hidden">
-                    <p>{IndivService.about}</p>
+
+               
+                <div className="flex items-center justify-between text-sm text-gray-700">
+                    <span className="flex items-center gap-1">
+                        <UsersRound className="w-4 h-4" /> {IndivService.availability}
+                    </span>
+                    <span>
+                        {IndivService.rating}
+                        <Star className="inline w-4 h-4 fill-yellow-400 text-yellow-500 ml-1" /> (
+                        {IndivService.reviews.length} reviews)
+                    </span>
                 </div>
-                <span className="font-semibold">Read More...</span>
-                <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Call Now</button>
+
+               
+                <div className="text-sm text-gray-700 max-h-[80px] overflow-hidden">
+                    {IndivService.about}
+                </div>
+
+               
+                <div className="text-sm text-blue-600 font-medium hover:underline">Read More...</div>
+
+              
+                <div className="pt-2 flex justify-end">
+                    <button
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            alert("Calling worker… (integrate phone number feature)");
+                        }}
+                        className="btn btn-sm bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded shadow"
+                    >
+                        Call Now
+                    </button>
                 </div>
             </div>
         </div>
@@ -51,10 +78,10 @@ export default function ServiceList({ IndivService }: JobListProps) {
 
 export function ServiceCard() {
     return (
-        <>
+        <div className="w-full flex flex-wrap justify-center gap-6">
             {service.map((indivService, index) => (
                 <ServiceList key={index} IndivService={indivService} />
             ))}
-        </>
+        </div>
     );
 }
