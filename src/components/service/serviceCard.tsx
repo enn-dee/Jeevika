@@ -11,14 +11,14 @@ interface JobListProps {
 export default function ServiceList({ IndivService }: JobListProps) {
     const router = useRouter();
 
-    const ShowCard = (service: Service) => {
-
+    const ShowCard = () => {
+        
         const slug = encodeURIComponent(IndivService.service_name)
         router.push(`/service/${slug}`)
     }
 
     return (
-        <div className="card bg-amber-50/50 w-96 shadow-sm text-black/70 backdrop-blur-md border border-black/30 hover:bg-amber-50/60 hover:shadow-lg hover:scale-95 hover:cursor-pointer transition-all ease-in-out duration-400 shrink-0" onClick={() => ShowCard(IndivService)}>
+        <div className="card bg-amber-50/50 w-96 shadow-sm text-black/70 backdrop-blur-md border border-black/30 hover:bg-amber-50/60 hover:shadow-lg hover:scale-95 hover:cursor-pointer transition-all ease-in-out duration-400 shrink-0" onClick={() => ShowCard()}>
 
             <div className="card-body w-full flex flex-col gap-4 ">
                 <div className="flex flex-row gap-4 items-center">
