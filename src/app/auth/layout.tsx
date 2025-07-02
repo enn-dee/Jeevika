@@ -1,4 +1,3 @@
-import SearchBar from "@/components/ui/SearchBar";
 import Image from "next/image";
 import { Toaster } from "react-hot-toast";
 
