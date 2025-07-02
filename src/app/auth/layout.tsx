@@ -1,3 +1,4 @@
+import SearchBar from "@/components/ui/SearchBar";
 import Image from "next/image";
 import { Toaster } from "react-hot-toast";
 
@@ -20,7 +21,7 @@ export default function Layout({
       />
 
       
-      <div className="relative h-screen w-screen overflow-hidden">
+      <div className="relative h-screen w-screen">
        
         <div className="absolute inset-0 z-0 bg-[url('/assets/backgrounds/tropical_background.jpg')] bg-cover bg-center" />
 
@@ -29,7 +30,8 @@ export default function Layout({
 
         
         <main className="relative z-20 h-full w-full flex flex-col md:flex-row items-center justify-center p-6 gap-6">
-        
+          
+         
           <div className="w-full max-w-md">{children}</div>
 
           
