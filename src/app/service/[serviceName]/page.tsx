@@ -14,7 +14,7 @@ export default function ServiceDetails() {
     (item) => encodeURIComponent(item.service_name) === serviceName
   );
 
-  if (!serviceData) return <p className="text-center text-lg">Service not found</p>;
+  if (!serviceData) return <p className="text-center text-xl text-black font-semibold">Service not found.</p>;
 
   return (
     <div className="flex flex-col items-center w-full">
@@ -27,7 +27,7 @@ export default function ServiceDetails() {
           <ArrowLeft className="w-4 h-4" /> All Services
         </Link>
       </div>
-
+      
       
       <div className="w-full max-w-4xl bg-white/90 backdrop-blur-sm shadow-xl border border-white/50 rounded-lg p-6 text-gray-800 space-y-6">
         
