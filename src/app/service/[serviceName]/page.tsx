@@ -1,5 +1,4 @@
 'use client';
-
 import { useParams } from 'next/navigation';
 import service from '@/data/services.json';
 import Link from 'next/link';
