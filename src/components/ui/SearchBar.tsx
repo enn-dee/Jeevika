@@ -3,8 +3,8 @@ import { Search } from "lucide-react"
 import { useSearch } from "@/context/SearchContext"
 
 function SearchBar() {
-    const {keyword, setKeyword} = useSearch();
-    
+    const { keyword, setKeyword } = useSearch();
+
     return (
         <div className="sticky top-5 z-20 backdrop-blur-md">
 
