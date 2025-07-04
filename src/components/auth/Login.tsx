@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 
-export function FormContainer() {
+export function LoginContainer() {
   const [number, setNumber] = useState('');
   const [password, setPassword] = useState('');
 
@@ -23,7 +23,7 @@ export function FormContainer() {
 
   return (
     <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4 mt-4">
-     
+
       <div>
         <label className="text-sm font-semibold">Phone Number</label>
         <input
@@ -39,7 +39,7 @@ export function FormContainer() {
         />
       </div>
 
-      
+
       <div>
         <label className="text-sm font-semibold">Password</label>
         <input
@@ -52,7 +52,7 @@ export function FormContainer() {
         />
       </div>
 
-      
+
       <button
         type="submit"
         className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-2 rounded font-semibold text-sm mt-2"

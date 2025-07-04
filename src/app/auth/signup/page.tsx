@@ -1,4 +1,4 @@
-import { FormContainer } from '@/components/auth/Signup';
+import { SignupContainer } from '@/components/auth/Signup';
 import Link from 'next/link';
 export default function Signup() {
   return (
@@ -10,7 +10,7 @@ export default function Signup() {
         Join our platform to connect and grow.
       </p>
 
-      <FormContainer />
+      <SignupContainer />
 
       <div className="text-white/80 text-sm text-center mt-4">
         Already have an account?{' '}

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { FormContainer } from '@/components/auth/Login';
+import { LoginContainer } from '@/components/auth/Login';
 
 export default function Login() {
   return (
@@ -9,7 +9,7 @@ export default function Login() {
       <h1 className="text-3xl font-bold text-white text-center">Welcome Back</h1>
       <p className="text-white/80 text-sm text-center">Login to continue</p>
 
-      <FormContainer />
+      <LoginContainer />
 
       <div className="text-white/80 text-sm text-center mt-4">
         Don&apos;t have an account?{' '}
