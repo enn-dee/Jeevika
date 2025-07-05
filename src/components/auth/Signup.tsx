@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { LocateFixed, Trash2 } from 'lucide-react';
+import { Loader2, LocateFixed, Trash2 } from 'lucide-react';
 import { reverseLocation } from '@/lib/ReverseLocation';
 import { GlassWrapper } from '../ui/GlassWrapper';
 import { Button } from '../ui/button';
@@ -18,6 +18,8 @@ export const SignupContainer = () => {
   const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [password, setPassword] = useState('');
   const [locationName, setLocationName] = useState('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -38,24 +40,35 @@ export const SignupContainer = () => {
   };
 
   const detectLocation = async () => {
-    console.log("location: ", location)
-    if (!navigator.geolocation) return toast.error('Geolocation not supported');
+    console.log("location: ", location);
+    if (!navigator.geolocation) {
+      return toast.error('Geolocation not supported');
+    }
+
+    toast.loading("Detecting location...");
+    setIsLoading(true);
+
     navigator.geolocation.getCurrentPosition(
       async (pos) => {
         const { latitude, longitude } = pos.coords;
         setLocation({ lat: latitude, lng: longitude });
         const locationName = await reverseLocation(latitude, longitude);
         setLocationName(locationName);
+        toast.dismiss();
+        toast.success("Location detected");
+        setIsLoading(false);
       },
       (err) => {
         toast.error('Location error: ' + err.message);
+        toast.dismiss();
+        setIsLoading(false);
       }
     );
   };
 
+
   return (
     <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4 mt-4">
-
       <div>
         <label className="text-sm font-semibold">Full Name</label>
         <input
@@ -111,15 +124,20 @@ export const SignupContainer = () => {
         <div className="flex gap-2 mt-2">
 
           <Button
-            variant={"emerald"}
+            variant="emerald"
             onClick={detectLocation}
+            disabled={isLoading}
           >
-            <LocateFixed size={16} /> Detect Location
+            {isLoading ? <Loader2 className="animate-spin mr-2 h-4 w-4" /> : <LocateFixed size={16} />}
+            Detect Location
           </Button>
 
           <Button
             variant={"dangerGradient"}
-            onClick={() => setLocationName("")}
+            onClick={() => {
+              setLocationName("")
+              setLocation(null);
+            }}
           >
             <Trash2 size={16} /> Clear
           </Button>
@@ -166,6 +184,6 @@ export const SignupContainer = () => {
       </GlassWrapper>
 
 
-    </form>
+    </form >
   );
 };
