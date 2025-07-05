@@ -9,6 +9,12 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
+        glass: "text-white font-semibold px-6 py-3 rounded-xl bg-white/10 border border-white/20 backdrop-blur-lg shadow-xl hover:scale-105 transition-all duration-300",
+        emerald:
+          "bg-gradient-to-br from-emerald-500 to-emerald-700 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:brightness-110 active:scale-95 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 hover:bg-emerald-600",
+
+        dangerGradient: "bg-gradient-to-br from-red-400 to-red-500 text-white px-6 py-3 rounded-xl font-semibold shadow-md hover:shadow-lg hover:brightness-100 active:scale-95 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2",
+
         default:
           "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
         destructive:

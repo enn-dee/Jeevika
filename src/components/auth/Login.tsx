@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import { Button } from '../ui/button';
+import { GlassWrapper } from '../ui/GlassWrapper';
 
 export function LoginContainer() {
   const [number, setNumber] = useState('');
@@ -52,13 +54,15 @@ export function LoginContainer() {
         />
       </div>
 
+      <GlassWrapper>
+        <Button variant="glass"
+          type="submit"
+          className='w-[50%]'
+        >
+          Login
+        </Button>
+      </GlassWrapper>
 
-      <button
-        type="submit"
-        className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-2 rounded font-semibold text-sm mt-2"
-      >
-        Login
-      </button>
     </form>
   );
 }

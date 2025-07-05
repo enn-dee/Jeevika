@@ -4,6 +4,8 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { LocateFixed, Trash2 } from 'lucide-react';
 import { reverseLocation } from '@/lib/ReverseLocation';
+import { GlassWrapper } from '../ui/GlassWrapper';
+import { Button } from '../ui/button';
 
 
 
@@ -107,20 +109,21 @@ export const SignupContainer = () => {
           />
         </div>
         <div className="flex gap-2 mt-2">
-          <button
-            type="button"
+
+          <Button
+            variant={"emerald"}
             onClick={detectLocation}
-            className="flex items-center gap-2 px-3 py-1.5 rounded bg-emerald-500 text-white hover:bg-emerald-600 text-sm"
           >
             <LocateFixed size={16} /> Detect Location
-          </button>
-          <button
-            type="button"
+          </Button>
+
+          <Button
+            variant={"dangerGradient"}
             onClick={() => setLocationName("")}
-            className="flex items-center gap-2 px-3 py-1.5 rounded bg-rose-500 text-white hover:bg-rose-600 text-sm"
           >
             <Trash2 size={16} /> Clear
-          </button>
+          </Button>
+
         </div>
       </div>
 
@@ -153,13 +156,16 @@ export const SignupContainer = () => {
         </div>
       </div>
 
+      <GlassWrapper>
+        <Button variant="glass"
+          type="submit"
+          className='w-[50%]'
+        >
+          Register
+        </Button>
+      </GlassWrapper>
 
-      <button
-        type="submit"
-        className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-2 rounded font-semibold text-sm mt-2"
-      >
-        Register
-      </button>
+
     </form>
   );
 };
