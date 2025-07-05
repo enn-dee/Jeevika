@@ -6,7 +6,7 @@ function SearchBar() {
     const { keyword, setKeyword } = useSearch();
 
     return (
-        <div className="sticky top-5 z-20 backdrop-blur-md">
+        <div className="sticky top-5 z-20 backdrop-blur-md ">
 
             <div className="relative">
                 <span
@@ -21,7 +21,7 @@ function SearchBar() {
 
                     type="text"
                     placeholder="Search..."
-                    className="w-full border border-black/70 p-2 rounded-md my-4 pl-10 outline-none"
+                    className="w-full border border-black/70 p-2 rounded-md my-4 pl-10 outline-none dark:border-slate-400"
                 />
             </div>
         </div>

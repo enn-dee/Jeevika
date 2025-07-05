@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-green-50 to-white text-gray-800 ddark:from-gray-900 dark:to-gray-800 dark:text-gray-100">
+    <main className="min-h-screen bg-gradient-to-br from-green-50 to-white text-gray-800 dark:from-gray-900 dark:to-gray-800 dark:text-gray-100">
 
 
 

@@ -2,11 +2,14 @@
 
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { LocateFixed, Trash2 } from 'lucide-react';
+import { Loader2, LocateFixed, Trash2 } from 'lucide-react';
+import { reverseLocation } from '@/lib/ReverseLocation';
+import { GlassWrapper } from '../ui/GlassWrapper';
+import { Button } from '../ui/button';
 
 
 
-export const FormContainer = () => {
+export const SignupContainer = () => {
   type UserTypes = 'buyer' | 'seller';
 
   const [name, setName] = useState('');
@@ -14,6 +17,9 @@ export const FormContainer = () => {
   const [userType, setUserType] = useState<UserTypes>('buyer');
   const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [password, setPassword] = useState('');
+  const [locationName, setLocationName] = useState('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,22 +39,36 @@ export const FormContainer = () => {
     }
   };
 
-  const detectLocation = () => {
-    if (!navigator.geolocation) return toast.error('Geolocation not supported');
+  const detectLocation = async () => {
+    console.log("location: ", location);
+    if (!navigator.geolocation) {
+      return toast.error('Geolocation not supported');
+    }
+
+    toast.loading("Detecting location...");
+    setIsLoading(true);
+
     navigator.geolocation.getCurrentPosition(
-      (pos) => {
+      async (pos) => {
         const { latitude, longitude } = pos.coords;
         setLocation({ lat: latitude, lng: longitude });
+        const locationName = await reverseLocation(latitude, longitude);
+        setLocationName(locationName);
+        toast.dismiss();
+        toast.success("Location detected");
+        setIsLoading(false);
       },
       (err) => {
         toast.error('Location error: ' + err.message);
+        toast.dismiss();
+        setIsLoading(false);
       }
     );
   };
 
+
   return (
     <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4 mt-4">
-      
       <div>
         <label className="text-sm font-semibold">Full Name</label>
         <input
@@ -61,7 +81,7 @@ export const FormContainer = () => {
         />
       </div>
 
-      
+
       <div>
         <label className="text-sm font-semibold">Phone Number</label>
         <input
@@ -76,7 +96,7 @@ export const FormContainer = () => {
         />
       </div>
 
-      
+
       <div>
         <label className="text-sm font-semibold">Set Password</label>
         <input
@@ -89,37 +109,43 @@ export const FormContainer = () => {
         />
       </div>
 
-     
+
       <div>
         <label className="text-sm font-semibold">Location (Auto-detect)</label>
         <div className="flex gap-2 mt-1">
           <input
             type="text"
             readOnly
-            value={location ? `${location.lat.toFixed(3)}, ${location.lng.toFixed(3)}` : ''}
+            value={locationName}
             placeholder="No location selected"
             className="w-full p-2 rounded bg-white/20 text-white placeholder:text-white/50 border border-white/30"
           />
         </div>
         <div className="flex gap-2 mt-2">
-          <button
-            type="button"
+
+          <Button
+            variant="emerald"
             onClick={detectLocation}
-            className="flex items-center gap-2 px-3 py-1.5 rounded bg-emerald-500 text-white hover:bg-emerald-600 text-sm"
+            disabled={isLoading}
           >
-            <LocateFixed size={16} /> Detect Location
-          </button>
-          <button
-            type="button"
-            onClick={() => setLocation(null)}
-            className="flex items-center gap-2 px-3 py-1.5 rounded bg-rose-500 text-white hover:bg-rose-600 text-sm"
+            {isLoading ? <Loader2 className="animate-spin mr-2 h-4 w-4" /> : <LocateFixed size={16} />}
+            Detect Location
+          </Button>
+
+          <Button
+            variant={"dangerGradient"}
+            onClick={() => {
+              setLocationName("")
+              setLocation(null);
+            }}
           >
             <Trash2 size={16} /> Clear
-          </button>
+          </Button>
+
         </div>
       </div>
 
-      
+
       <div>
         <label className="text-sm font-semibold">User Type</label>
         <div className="flex items-center gap-4 mt-1">
@@ -148,13 +174,16 @@ export const FormContainer = () => {
         </div>
       </div>
 
-      
-      <button
-        type="submit"
-        className="w-full bg-emerald-500 hover:bg-emerald-600 text-white py-2 rounded font-semibold text-sm mt-2"
-      >
-        Register
-      </button>
-    </form>
+      <GlassWrapper>
+        <Button variant="glass"
+          type="submit"
+          className='w-[50%]'
+        >
+          Register
+        </Button>
+      </GlassWrapper>
+
+
+    </form >
   );
 };

@@ -39,7 +39,6 @@ export default function RootLayout({
             <ThemeToggle />
             {children}
           </div>
-          {children}
         </ThemeProvider>
       </body>
     </html>
