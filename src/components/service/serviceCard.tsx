@@ -22,7 +22,7 @@ export default function ServiceList({ IndivService }: JobListProps) {
     return (
         <div
             onClick={goToDetails}
-            className="cursor-pointer transition-all duration-300 transform hover:scale-[0.97] hover:shadow-xl rounded-lg border border-gray-300 bg-white/80 backdrop-blur-md shadow-md w-full max-w-md text-gray-800 hover:bg-white dark:bg-gray-800 dark:text-white dark:border-gray-400"
+            className="cursor-pointer transition-all duration-300 transform hover:scale-[0.97] hover:shadow-xl rounded-lg border border-gray-300 bg-white/80 backdrop-blur-md shadow-md w-full max-w-md text-gray-800 hover:bg-white dark:bg-gray-700 dark:text-gray-100 dark:border-slate-500"
         >
             <div className="p-5 flex flex-col gap-4">
 
@@ -68,7 +68,7 @@ export default function ServiceList({ IndivService }: JobListProps) {
                             e.stopPropagation();
                             alert("Calling worker… (integrate phone number feature)");
                         }}
-                        className="btn btn-sm bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded shadow dark:bg-blue-400 dark:hover:bg-blue-500 dark:text-gray-100"
+                        className="border-none btn btn-sm bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded shadow dark:bg-blue-400 dark:hover:bg-blue-500 dark:text-gray-100"
                     >
                         Call Now
                     </button>

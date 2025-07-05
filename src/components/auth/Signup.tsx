@@ -36,6 +36,7 @@ export const SignupContainer = () => {
   };
 
   const detectLocation = async () => {
+    console.log("location: ", location)
     if (!navigator.geolocation) return toast.error('Geolocation not supported');
     navigator.geolocation.getCurrentPosition(
       async (pos) => {
