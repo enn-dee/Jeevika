@@ -2,29 +2,33 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-
-interface Job {
-  id: string;
-  title: string;
-  description: string;
-  price: number;
-  location: string;
-  seller?: { name: string };
-}
+import { Job } from "@/types/service";
 
 export default function JobsPage() {
-  const [jobs, setJobs] = useState<Job[]>([
-    {id:"1",title:"test tile",description:"test description",price:25, location:"srinagar"}
-  ]);
+  const [jobs, setJobs] = useState<Job[]>([]);
   const [location, setLocation] = useState("Srinagar");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchJobs() {
-      const token = localStorage.getItem("token");
-      const res:any = await axios.get(`http://localhost:3000/jobs?location=${location}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setJobs(res.data.jobs || []);
+      setLoading(true);
+      setError(null);
+      try {
+        const token = localStorage.getItem("token");
+        
+        const res = await axios.get<{ jobs: Job[] }>(
+          `http://localhost:3000/jobs?location=${location}`,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        setJobs(res.data.jobs || []);
+      } catch (err) {
+        console.error(err);
+        setError("Failed to fetch jobs.");
+        setJobs([]);
+      } finally {
+        setLoading(false);
+      }
     }
     fetchJobs();
   }, [location]);
@@ -43,20 +47,18 @@ export default function JobsPage() {
       </select>
 
       <div className="mt-6 space-y-4">
-        {!jobs ? <h1 className="text-3xl">Jobs not found</h1>:
-        (
+        {loading && <p>Loading jobs...</p>}
+        {error && <p className="text-red-500">{error}</p>}
+        {!loading && !jobs.length && <h1 className="text-3xl">Jobs not found</h1>}
 
-            jobs.map((job) => (
-                <div key={job.id} className="p-4 border rounded shadow">
-                <h2 className="font-semibold">{job.title}</h2>
-                <p>{job.description}</p>
-                <p className="text-blue-600">₹{job.price}</p>
-                <p className="text-gray-500">Seller: {job.seller?.name}</p>
-                </div>
-            ))
-        )
-        }
-        
+        {jobs.map((job) => (
+          <div key={job.id} className="p-4 border rounded shadow">
+            <h2 className="font-semibold">{job.title}</h2>
+            <p>{job.description}</p>
+            <p className="text-blue-600">₹{job.price}</p>
+            <p className="text-gray-500">Seller: {job.worker?.name}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
