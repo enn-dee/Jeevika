@@ -4,10 +4,7 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Loader2, LocateFixed, Trash2 } from 'lucide-react';
 import { reverseLocation } from '@/lib/ReverseLocation';
-import { GlassWrapper } from '../ui/GlassWrapper';
 import { Button } from '../ui/button';
-
-
 
 export const SignupContainer = () => {
   type UserTypes = 'buyer' | 'seller';
@@ -19,7 +16,6 @@ export const SignupContainer = () => {
   const [password, setPassword] = useState('');
   const [locationName, setLocationName] = useState('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,12 +36,11 @@ export const SignupContainer = () => {
   };
 
   const detectLocation = async () => {
-    console.log("location: ", location);
     if (!navigator.geolocation) {
       return toast.error('Geolocation not supported');
     }
 
-    toast.loading("Detecting location...");
+    toast.loading('Detecting location...');
     setIsLoading(true);
 
     navigator.geolocation.getCurrentPosition(
@@ -55,7 +50,7 @@ export const SignupContainer = () => {
         const locationName = await reverseLocation(latitude, longitude);
         setLocationName(locationName);
         toast.dismiss();
-        toast.success("Location detected");
+        toast.success('Location detected');
         setIsLoading(false);
       },
       (err) => {
@@ -66,9 +61,9 @@ export const SignupContainer = () => {
     );
   };
 
-
   return (
-    <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4 mt-4">
+    <form onSubmit={handleSubmit} className="w-full flex flex-col gap-5 mt-2">
+      {/* Full Name */}
       <div>
         <label className="text-sm font-semibold">Full Name</label>
         <input
@@ -76,12 +71,15 @@ export const SignupContainer = () => {
           required
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder="e.g. Jhon Doe"
-          className="w-full mt-1 p-2 rounded bg-white/20 text-white placeholder:text-white/50 border border-white/30 focus:outline-none focus:ring-2 focus:ring-emerald-300"
+          placeholder="e.g. John Doe"
+          className="w-full mt-1 p-2 rounded border border-gray-300 dark:border-gray-600 
+          bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 
+          placeholder:text-gray-400 dark:placeholder:text-gray-500 
+          focus:outline-none focus:ring-2 focus:ring-emerald-500"
         />
       </div>
 
-
+      {/* Phone Number */}
       <div>
         <label className="text-sm font-semibold">Phone Number</label>
         <input
@@ -92,11 +90,14 @@ export const SignupContainer = () => {
           value={number}
           onChange={(e) => setNumber(e.target.value)}
           placeholder="e.g. 9876543210"
-          className="w-full mt-1 p-2 rounded bg-white/20 text-white placeholder:text-white/50 border border-white/30 focus:outline-none focus:ring-2 focus:ring-emerald-300"
+          className="w-full mt-1 p-2 rounded border border-gray-300 dark:border-gray-600 
+          bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 
+          placeholder:text-gray-400 dark:placeholder:text-gray-500 
+          focus:outline-none focus:ring-2 focus:ring-emerald-500"
         />
       </div>
 
-
+      {/* Password */}
       <div>
         <label className="text-sm font-semibold">Set Password</label>
         <input
@@ -105,47 +106,53 @@ export const SignupContainer = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Minimum 5 characters"
-          className="w-full mt-1 p-2 rounded bg-white/20 text-white placeholder:text-white/50 border border-white/30 focus:outline-none focus:ring-2 focus:ring-emerald-300"
+          className="w-full mt-1 p-2 rounded border border-gray-300 dark:border-gray-600 
+          bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 
+          placeholder:text-gray-400 dark:placeholder:text-gray-500 
+          focus:outline-none focus:ring-2 focus:ring-emerald-500"
         />
       </div>
 
-
+      {/* Location */}
       <div>
         <label className="text-sm font-semibold">Location (Auto-detect)</label>
-        <div className="flex gap-2 mt-1">
-          <input
-            type="text"
-            readOnly
-            value={locationName}
-            placeholder="No location selected"
-            className="w-full p-2 rounded bg-white/20 text-white placeholder:text-white/50 border border-white/30"
-          />
-        </div>
-        <div className="flex gap-2 mt-2">
+        <input
+          type="text"
+          readOnly
+          value={locationName}
+          placeholder="No location selected"
+          className="w-full mt-1 p-2 rounded border border-gray-300 dark:border-gray-600 
+          bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 
+          placeholder:text-gray-400 dark:placeholder:text-gray-500"
+        />
 
+        <div className="flex gap-2 mt-3">
           <Button
             variant="emerald"
             onClick={detectLocation}
             disabled={isLoading}
           >
-            {isLoading ? <Loader2 className="animate-spin mr-2 h-4 w-4" /> : <LocateFixed size={16} />}
+            {isLoading ? (
+              <Loader2 className="animate-spin mr-2 h-4 w-4" />
+            ) : (
+              <LocateFixed size={16} />
+            )}
             Detect Location
           </Button>
 
           <Button
-            variant={"dangerGradient"}
+            variant="dangerGradient"
             onClick={() => {
-              setLocationName("")
+              setLocationName('');
               setLocation(null);
             }}
           >
             <Trash2 size={16} /> Clear
           </Button>
-
         </div>
       </div>
 
-
+      {/* User Type */}
       <div>
         <label className="text-sm font-semibold">User Type</label>
         <div className="flex items-center gap-4 mt-1">
@@ -156,7 +163,7 @@ export const SignupContainer = () => {
               value="buyer"
               checked={userType === 'buyer'}
               onChange={() => setUserType('buyer')}
-              className="accent-emerald-500"
+              className="accent-emerald-600"
             />
             Buyer
           </label>
@@ -167,23 +174,20 @@ export const SignupContainer = () => {
               value="seller"
               checked={userType === 'seller'}
               onChange={() => setUserType('seller')}
-              className="accent-emerald-500"
+              className="accent-emerald-600"
             />
             Seller
           </label>
         </div>
       </div>
 
-      <GlassWrapper>
-        <Button variant="glass"
-          type="submit"
-          className='w-[50%]'
-        >
-          Register
-        </Button>
-      </GlassWrapper>
-
-
-    </form >
+      {/* Submit */}
+      <Button
+        type="submit"
+        className="w-full bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg"
+      >
+        Register
+      </Button>
+    </form>
   );
 };
