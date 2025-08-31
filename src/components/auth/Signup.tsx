@@ -23,7 +23,7 @@ export const SignupContainer = () => {
       if (name.trim().length < 3) throw new Error('Name must be at least 3 characters');
       if (number.trim().length < 9) throw new Error('Invalid phone number');
       if (password.length < 5) throw new Error('Password should be at least 5 characters');
-
+      console.log("location: ", location)
       toast.success('Registration successful');
       setName('');
       setNumber('');

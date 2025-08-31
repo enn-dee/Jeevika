@@ -1,6 +1,6 @@
 'use client';
 import * as React from "react";
-import { Search, Hammer, UserPlus2, Building2, PhoneCall, Sparkles, Users, Shield, Star } from 'lucide-react';
+import { Search, Hammer, UserPlus2, Building2, PhoneCall, Sparkles, Shield, Star } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FaLeaf, FaWater, FaSeedling } from 'react-icons/fa';
