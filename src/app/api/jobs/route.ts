@@ -1,16 +1,18 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import mockJobs from "@/data/services.json"
+
 
 export async function GET(req: Request) {
-  const { searchParams } = new URL(req.url);
-  const district = searchParams.get("district");
+  // const { searchParams } = new URL(req.url);
+  // const district = searchParams.get("district");
 
-  const jobs = await prisma.job.findMany({
-    where: district ? { location: district } : {},
-    include: { worker: { select: { id: true, name: true, role: true } } },
-  });
+  // const jobs = await prisma.job.findMany({
+  //   where: district ? { location: district } : {},
+  //   include: { worker: { select: { id: true, name: true, role: true } } },
+  // });
 
-  return NextResponse.json(jobs);
+  return NextResponse.json(mockJobs);
 }
 
 export async function POST(req: Request) {
